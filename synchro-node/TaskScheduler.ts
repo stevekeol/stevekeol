@@ -6,7 +6,7 @@
 import { TASK_TYPE, TASK_STATUS } from './Constant';
 
 class TaskScheduler {
-  taskQuene: AsyncGenerator[]; //任务队列(定时任务加入taskQuene; 实时任务直接加入taskProcessorQuene的头部，还是尾部？)(task按照权重插入对应队列的对应位置)
+  taskQuene: {}; //数组还是哈希Map？//任务队列(定时任务加入taskQuene; 实时任务直接加入taskProcessorQuene的头部，还是尾部？)(task按照权重插入对应队列的对应位置)
   taskProcessorQuene: AsyncGenerator[]; //调度队列(任务执行队列)(取出下一次从taskQuene中扫描的时刻之前的任务，并成为这一批待执行的任务)
 
   constructor() {
@@ -41,6 +41,14 @@ class TaskScheduler {
   run(tasks: AsyncGenerator[]): void {
     //
   }
+
+  //[TaskScheduler.ts] 唤醒任务
+  wakeup(taskId) {
+    this.taskQuene.remove(taskId);
+    this.taskProcessorQuene.add(taskId);
+  }
+
+  
 
   //: 失败
 

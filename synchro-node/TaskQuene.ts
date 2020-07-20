@@ -1,37 +1,37 @@
 /*!
- * TaskQuene.ts - 任务队列
+ * TaskQuene.ts - 任务队列(需要持久化)
  * Author: zhangjie @Instinct-Blockchain
  * CreateTime: 2020-07-16 10:00
  */
-// import { Task } from './Task';
-
-// export class TaskQuene {
-//   quene: []; //对象数组在ts中怎么声明类型
-
-//   constructor() {
-//     this.quene = [];
-//   }
-
-//   /**
-//    * judge the quene is empty
-//    * @returns { boolean }
-//    */
-//   isEmpty(): boolean {
-//     return this.quene.length ? false : true;
-//   }
-
-//   //此处的Task来源是?
-//   //应该返回什么：整个新的队列，还是刚添加的task，还是true/false?
-//   add(task: Task) {
-//     this.quene.push(task);
-//   }
-// }
-
-
+import { EventEmitter } from './EventEmitter';
 import { Task } from './Task';
+import { TaskProcessor } from './TaskProcessor';
 
-let task = new Task();
 
-console.log(task.setState('SUCCESSED'));
-console.log(task.wakeup());
-console.log(task.getState());
+export class TaskQuene extends EventEmitter {
+  quene: {};
+  constructor() {
+    super();
+    this.quene = {};  //采用{}而非[]
+  }
+
+  /**
+   * 向任务队列中添加某个任务
+   * @param { Task } task
+   */
+  add(task: Task) {
+    if(!this.quene[task.taskId]) {
+      this.quene[task.taskId] = task;
+    }
+  }
+
+  /**
+   * 从任务队列中删除某个任务
+   * @param { Task } task
+   */
+  delete(task: Task) {
+    if(this.quene[task.taskId]) {
+      delete this.quene[task.taskId];
+    }
+  }
+}
