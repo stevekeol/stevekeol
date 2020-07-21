@@ -41,8 +41,10 @@ export class TaskProcessor extends EventEmitter {
 
 }
 
-let task1 = new Task('DOWNLOAD_HEADER');
+let task1 = new Task('DOWNLOAD_HEADER', () => console.log('jiege'));
 let task2 = new Task('VERTIFY_HEADER');
+
+task1.abort();
 
 let abort1 = new Aborter(task1);
 let abort2 = new Aborter(task2);

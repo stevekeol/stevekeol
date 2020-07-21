@@ -55,5 +55,23 @@ export class Task extends EventEmitter {
    */
   updateProgress(height: number) {
     this.progress = height;
-  }  
+  }
+
+  /**
+   * 中止该任务
+   * @return { string } ??? //中止某个任务时，需要返回一个Boolean?Promise？...
+   */
+  abort() {
+    this.abortTask()
+    console.log(`Task[${this.type}] aborted at height: ${new Date().getTime()}`)
+  }
 }
+
+
+let task1 = new Task('DOWNLOAD_HEADER', setInterval(() => console.log(`Height: ${new Date().getTime()}`), 2000));
+// let task2 = new Task('VERTIFY_HEADER');
+
+task1.abort();
+
+let abort1 = new Aborter(task1);
+let abort2 = new Aborter(task2);
