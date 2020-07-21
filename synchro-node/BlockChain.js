@@ -1,19 +1,55 @@
 /*!
- * BlockChain.ts - 区块链的结构化定义
+ * BlockChain.ts - 区块节点类 & 区块链类
  * Author: zhangjie @Instinct-Blockchain
  * CreateTime: 2020-07-21 14:00
  */
 
+// import {CryptoJS} from 'crypto-js'
+
+const CryptoJS = require('crypto-js');
+
+/**
+ * 区块类
+ */
+class Block {
+  /**
+   * 构造函数
+   * @param {Number} height 
+   * @param {String} previousHash 
+   * @param {Number} timestamp 
+   * @param {*} data 
+   * @param {String} hash 
+   */
+  constructor(height, previousHash, timestamp, data, hash) {
+    this.height = height
+    this.previousHash = previousHash + ''
+    this.timestamp = timestamp
+    this.data = data
+    this.hash = hash + ''
+  }
+
+  static generateBlock(blockData, previousBlock) {
+    const nextHeight = previousBlock.height + 1;
+    const nextTimeStamp = new Date().getTime();
+    //忽略MerkelRoot和Nonce
+    const nextHash = CryptoJS.SHA256(nextHeight + previousBlock.hash + nextTimeStamp + blockData) + ''; 
+    return new Block(nextHeight, previousBlock.hash, nextTimeStamp, blockData, nextHash);    
+  }
+}
+
+/**
+ * 区块链类
+ */
 class BlockChain {
   constructor() {
     this.blocks = [this.getGenesisBlock()]
   }
 
   /**
-   * 创世区块(硬编码)
+   * 创建区块链起源块, 此块是硬编码
    */
   getGenesisBlock() {
-    return new Block(0, '0', 1552801194452, 'genesis block', '810f9e854ade9bb8730d776ea02622b65c02b82ffa163ecfe4cb151a14412ed4')
+    return new Block(0, '0', 1552801194452, 'GenesisBlock', '810f9e854ade9bb8730d776ea02622b65c02b82ffa163ecfe4cb151a14412ed4')
   }
 
   /**
@@ -43,34 +79,24 @@ class BlockChain {
   }
 
   /**
-   * 向区块链添加新节点
-   * @param {Block} newBlock 
-   */
-  addBlock(newBlock) {
-    // 合法区块
-    if(this.isValidNewBlock(newBlock, this.getLatestBlock())) {
-      this.blocks.push(newBlock)
-      return true  
-    }
-    return false
-  }
-
-  /**
    * 判断新加入的块是否合法
    * @param {Block} newBlock 
    * @param {Block} previousBlock 
    */
   isValidNewBlock(newBlock, previousBlock) {
-    if( !(newBlock instanceof Block) || !(previousBlock instanceof Block) ) {
+    if(
+      !(newBlock instanceof Block) ||
+      !(previousBlock instanceof Block)
+    ) {
       return false
     }
 
-    // 判断height是否自增
+    // 判断height
     if(newBlock.height !== previousBlock.height + 1) { 
       return false
     }
 
-    // 判断区块中preHash是否和前一块相等
+    // 判断hash值
     if(newBlock.previousHash !== previousBlock.hash) { 
       return false
     }
@@ -82,17 +108,15 @@ class BlockChain {
 
     return true
   }
-
+  
   /**
-   * 插入新链表
-   * @param {Array} newChain 
+   * 向区块链添加新节点
+   * @param {Block} newBlock 
    */
-  addChain(newChain) {
-    if(this.isValidNewChain(newChain)) {
-      const index = newChain[0].index
-      this.blocks.splice(index)
-      this.blocks = this.blocks.concat(newChain)
-      return true
+  addBlock(newBlock) {
+    if(this.isValidNewBlock(newBlock, this.getLatestBlock())) {
+      this.blocks.push(newBlock)
+      return true  
     }
     return false
   }
@@ -110,19 +134,19 @@ class BlockChain {
       firstBlock = newChain[0]
 
     // 硬编码的起源块不能改变
-    if(firstBlock.index === 0) {
+    if(firstBlock.height === 0) {
       return false
     }
 
     // 移植新的链的长度 <= 现有链的长度
     // 新的链不可信
-    if(newChainLength + firstBlock.index <= this.blocks.length) {
+    if(newChainLength + firstBlock.height <= this.blocks.length) {
       return false
     }
 
     // 下面检查新的链能否移植
     // 以及新的链的每个节点是否符合规则
-    if(!this.isValidNewBlock(firstBlock, this.blocks[firstBlock.index - 1])) {
+    if(!this.isValidNewBlock(firstBlock, this.blocks[firstBlock.height - 1])) {
       return false
     }
 
@@ -131,6 +155,26 @@ class BlockChain {
         return false
       }
     }
+
     return true
+  }
+
+  /**
+   * 插入新链表
+   * @param {Array} newChain 
+   */
+  addChain(newChain) {
+    if(this.isValidNewChain(newChain)) {
+      const height = newChain[0].height
+      this.blocks.splice(height)
+      this.blocks = this.blocks.concat(newChain)
+      return true
+    }
+    return false
+  }
+
+  //打印该区块链的所有节点
+  printBlockChain() {
+    console.table(this.blocks)
   }
 }

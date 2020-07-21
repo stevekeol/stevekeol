@@ -1,9 +1,15 @@
+/*!
+ * BlockChain.ts - 区块节点类 & 区块链类
+ * Author: zhangjie @Instinct-Blockchain
+ * CreateTime: 2020-07-21 14:00
+ */
+
 // import {CryptoJS} from 'crypto-js'
 
 const CryptoJS = require('crypto-js');
 
 /**
- * 区块信息的结构化定义
+ * 区块类
  */
 class Block {
   /**
@@ -21,10 +27,18 @@ class Block {
     this.data = data
     this.hash = hash + ''
   }
+
+  static generateBlock(blockData, previousBlock) {
+    const nextHeight = previousBlock.height + 1;
+    const nextTimeStamp = new Date().getTime();
+    //忽略MerkelRoot和Nonce
+    const nextHash = CryptoJS.SHA256(nextHeight + previousBlock.hash + nextTimeStamp + blockData) + ''; 
+    return new Block(nextHeight, previousBlock.hash, nextTimeStamp, blockData, nextHash);    
+  }
 }
 
 /**
- * 区块链的结构信息定义
+ * 区块链类
  */
 class BlockChain {
   constructor() {
@@ -167,15 +181,6 @@ class BlockChain {
 
 /**********************************测试***************************************/
 
-
-//生成区块
-function generateBlock(blockData, previousBlock) {
-  const nextIndex = previousBlock.height + 1;
-  const nextTimeStamp = new Date().getTime();
-  const nextHash = CryptoJS.SHA256(nextIndex + previousBlock.hash + nextTimeStamp + blockData) + '';
-  return new Block(nextIndex, previousBlock.hash, nextTimeStamp, blockData, nextHash);
-}
-
 //生成区块数据
 function generateBlockData() {
   const dataList = ['Zhangjie is cool', 'Pengxiaohua is cool', 'ChenZiqiang is cool', 'Fangguojun is cool', 'Lulina is beautiful', 'Maqicheng is cool', 'Wangchuanshuo is cool', 'Linshaoyuan is beautiful', 'Lulina is beautiful'];
@@ -186,17 +191,12 @@ function generateBlockData() {
 //实例化一个区块链
 const blockChain = new BlockChain();
 
-//核验新区块的合法性
-const checkBlock = (newBlock) => {
-  const previousBlock = blockChain.getLatestBlock()
-  return blockChain.isValidNewBlock(newBlock, previousBlock)
-}
 
 //最终测试脚本: 每3秒出一个块，并打印出整个区块链
 blockChain.printBlockChain();
 setInterval(() => {
   let blockchain = [];
-  let newBlock = generateBlock(generateBlockData(), blockChain.getLatestBlock());
+  let newBlock = Block.generateBlock(generateBlockData(), blockChain.getLatestBlock());
 
   blockChain.addBlock(newBlock)
 
