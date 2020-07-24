@@ -68,10 +68,10 @@ export class Task extends EventEmitter {
 }
 
 
-let task1 = new Task('DOWNLOAD_HEADER', setInterval(() => console.log(`Height: ${new Date().getTime()}`), 2000));
-// let task2 = new Task('VERTIFY_HEADER');
+// let task1 = new Task('DOWNLOAD_HEADER', setInterval(() => console.log(`Height: ${new Date().getTime()}`), 2000));
+// // let task2 = new Task('VERTIFY_HEADER');
 
-task1.abort();
+// task1.abort();
 
-let abort1 = new Aborter(task1);
-let abort2 = new Aborter(task2);
+// let abort1 = new Aborter(task1);
+// let abort2 = new Aborter(task2);

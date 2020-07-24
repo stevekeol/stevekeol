@@ -7,6 +7,7 @@
 // import {CryptoJS} from 'crypto-js'
 
 const CryptoJS = require('crypto-js');
+const fs = require('fs');
 
 /**
  * 区块类
@@ -41,9 +42,40 @@ class Block {
  * 区块链类
  */
 class BlockChain {
-  constructor() {
+
+  /**
+   * 如果指定在历史BlockChain上继续增加区块，则从本地存储中取出；否则默认创建新的区块链
+   * @param { string } historyChain
+   */
+  constructor(historyChain) {
     this.blocks = [this.getGenesisBlock()]
   }
+
+  // constructor(historyChain) {
+  //   if( historyChain) {
+  //     let blocks = this.getHistoryChain(historyChain);
+  //     this.blocks = blocks ? [blocks] : [this.getGenesisBlock()];
+  //   } else {
+  //     this.blocks = [this.getGenesisBlock()]
+  //   }
+  // }
+
+  /**
+   * 将区块链异步保存到文件中
+   */
+  async saveHistoryChain(file, block) {
+    await fs.appendFile(file, JSON.stringify(block), err => {
+      if (err) throw err;
+      console.log(`Height: ${block.height} is saved.`);
+    });    
+  }
+
+  /**
+   * 从文件中同步读出历史区块数据
+   */
+  // getHistoryChain() {
+  //   return fs.readFileSync('historyChain.txt', 'utf-8');
+  // }  
 
   /**
    * 创建区块链起源块, 此块是硬编码
@@ -173,10 +205,15 @@ class BlockChain {
     return false
   }
 
-  //打印该区块链的所有节点
+  //打印该区块链的所有区块
   printBlockChain() {
-    console.table(this.blocks)
+    console.table(this.blocks);
   }
+
+  //打印该区块链的最新区块
+  printLastBlock() {
+    console.table(this.blocks[this.blocks.length - 1]);
+  }  
 }
 
 /**********************************测试***************************************/
@@ -184,21 +221,22 @@ class BlockChain {
 //生成区块数据
 function generateBlockData() {
   const dataList = ['Zhangjie is cool', 'Pengxiaohua is cool', 'ChenZiqiang is cool', 'Fangguojun is cool', 'Lulina is beautiful', 'Maqicheng is cool', 'Wangchuanshuo is cool', 'Linshaoyuan is beautiful', 'Lulina is beautiful'];
-  return dataList[Math.random() * dataList.length >> 0]
+  return dataList[Math.random() * dataList.length >> 0];
 }
 
 
 //实例化一个区块链
-const blockChain = new BlockChain();
+const blockChain = new BlockChain('testNet');
 
 
-//最终测试脚本: 每3秒出一个块，并打印出整个区块链
+//最终测试脚本: 每X秒出一个块，并打印出整个区块链
 blockChain.printBlockChain();
 setInterval(() => {
-  let blockchain = [];
   let newBlock = Block.generateBlock(generateBlockData(), blockChain.getLatestBlock());
 
   blockChain.addBlock(newBlock)
 
-  blockChain.printBlockChain()
-}, 5000)
+  blockChain.printLastBlock() //打印最后一个区块
+  // blockChain.printBlockChain() //打印整个区块
+  blockChain.saveHistoryChain('historyChain_big.txt', newBlock); // 将新区快持久化到整个区块链上(不应该放在此处)：saveHistoryChain(blockChain, newBlock)
+}, 1)
