@@ -1,7 +1,6 @@
 ### Hi there 👋
 
-- 🔭 I’m currently working on Instinct Blockchain
-- 🌱 I’m currently learning typescript & Nest.js
+- ⚡ I’m currently Moving bricks
 
 <!--
 **stevekeol/stevekeol** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
