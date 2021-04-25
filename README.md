@@ -29,8 +29,8 @@ Here are some ideas to get you started:
     <img src="https://img.shields.io/badge/-TypeScript-3178c6?style=flat-square&logo=typescript&logoColor=white"/>
     <img src="https://img.shields.io/badge/-React-blue?style=flat-square&logo=react&logoColor=white"/>
     <img src="https://img.shields.io/badge/-Nodejs-74ad63?style=flat-square&logo=Node.js&logoColor=white"/>
+    <img src="https://img.shields.io/badge/-ReactNative-3ea546?style=flat-square&logo=ReactNative&logoColor=white"/>
     <img src="https://img.shields.io/badge/-Electron-2b2f3b?style=flat-square&logo=electron&logoColor=white"/>
-  <img src="https://img.shields.io/badge/-ReactNative-3ea546?style=flat-square&logo=ReactNative&logoColor=white"/>
     <img src="https://img.shields.io/badge/-MongoDB-3ea546?style=flat-square&logo=mongodb&logoColor=white"/>
   </p>
 </p>
