@@ -34,5 +34,5 @@ Here are some ideas to get you started:
   <img src="https://img.shields.io/badge/-MongoDB-3ea546?style=flat-square&logo=mongodb&logoColor=white"/>
 </p>
 <p>
-  <img src="https://img.shields.io/badge/Interest-DHT-brightgreen"/>
+  <img src="https://img.shields.io/badge/Blockchain-DHT-brightgreen?style=flat-square"/>
 </p>
