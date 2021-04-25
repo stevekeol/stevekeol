@@ -1,6 +1,6 @@
 ### Hi guys 👋
 
-- ⚡ I’m currently Moving bricks in blockchain world
+- 🔭 I’m currently Moving bricks in blockchain world
 - 💬 Wechat: stevekeol
 - 📫 How to reach me: [Email](stevekeol.x@gmail.com) 
 
@@ -24,21 +24,11 @@ Here are some ideas to get you started:
 <br>
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=stevekeol&layout=compact)](https://github.com/stevekeol)
 -->
-
-<p>
+- ⚡ Fun: <p>
   <img src="https://img.shields.io/badge/-TypeScript-3178c6?style=flat-square&logo=typescript&logoColor=white"/>
   <img src="https://img.shields.io/badge/-React-blue?style=flat-square&logo=react&logoColor=white"/>
   <img src="https://img.shields.io/badge/-Nodejs-74ad63?style=flat-square&logo=Node.js&logoColor=white"/>
   <img src="https://img.shields.io/badge/-ReactNative-3ea546?style=flat-square&logo=ReactNative&logoColor=white"/>
   <img src="https://img.shields.io/badge/-Electron-2b2f3b?style=flat-square&logo=electron&logoColor=white"/>
   <img src="https://img.shields.io/badge/-MongoDB-3ea546?style=flat-square&logo=mongodb&logoColor=white"/>
-</p>
-<p>
-  <img src="https://img.shields.io/badge/Blockchain-DHT-brightgreen?style=flat-square"/>
-  <img src="https://img.shields.io/badge/Blockchain-Raft-brightgreen?style=flat-square"/>
-</p>
-<p>
-  <img src="https://img.shields.io/badge/Blockchain-libp2p-brightgreen?style=flat-square"/>
-  <img src="https://img.shields.io/badge/Blockchain-Telegram-brightgreen?style=flat-square"/>
-  <img src="https://img.shields.io/badge/Blockchain-status-brightgreen?style=flat-square"/>
 </p>
