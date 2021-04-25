@@ -37,3 +37,8 @@ Here are some ideas to get you started:
   <img src="https://img.shields.io/badge/Blockchain-DHT-brightgreen?style=flat-square"/>
   <img src="https://img.shields.io/badge/Blockchain-Raft-brightgreen?style=flat-square"/>
 </p>
+<p>
+  <img src="https://img.shields.io/badge/Blockchain-libp2p-brightgreen?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Blockchain-Telegram-brightgreen?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Blockchain-status-brightgreen?style=flat-square"/>
+</p>
