@@ -35,4 +35,5 @@ Here are some ideas to get you started:
 </p>
 <p>
   <img src="https://img.shields.io/badge/Blockchain-DHT-brightgreen?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Blockchain-Raft-brightgreen?style=flat-square"/>
 </p>
