@@ -1,7 +1,7 @@
 ### Hi guys 👋
 
 - 🔭 I’m currently Moving bricks in blockchain world
-- 💬 Wechat: stevekeol
+- 💬 Wechat: `stevekeol`
 - 📫 How to reach me: [Email](stevekeol.x@gmail.com) 
 
 ### Skills 🌱
