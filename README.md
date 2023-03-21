@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/badge/-Docker-blue?style=flat-square&logo=docker&logoColor=white"/>  
   <img src="https://img.shields.io/badge/-ReactNative-3ea546?style=flat-square&logo=ReactNative&logoColor=white"/>
   <img src="https://img.shields.io/badge/-MongoDB-3ea546?style=flat-square&logo=mongodb&logoColor=white"/>
-  <img src="https://img.shields.io/badge/-Electron-2b2f3b?style=flat-square&logo=electron&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-Rust-3ea546?style=flat-square&logo=tauri&logoColor=white"/>
 </p>
 
 <!--
