@@ -1,7 +1,7 @@
 ### Hi guys 👋
 
 - 🔭 I’m currently Moving bricks in `blockchain` & `web3`.
-- 💬 Wechat: `stevekeol`
+<!--- 💬 Wechat: `stevekeol`-->
 - 🐦 Twitter: `stevekeol`
 - 📫 How to reach me: [Email](stevekeol.x@gmail.com) 
 
