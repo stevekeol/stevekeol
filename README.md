@@ -7,8 +7,8 @@
 
 ### Skills 🌱
 <p>  
-  <img src="https://img.shields.io/badge/-Rust-B0C4DE?style=flat-square&logo=Rust&logoColor=white"/>
-  <img src="https://img.shields.io/badge/-Go-3ea546?style=flat-square&logo=Go&logoColor=blue"/>
+  <img src="https://img.shields.io/badge/-Rust-3ea546?style=flat-square&logo=Rust&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-Go-3ea546?style=flat-square&logo=Go&logoColor=white"/>
   <img src="https://img.shields.io/badge/-TypeScript-3178c6?style=flat-square&logo=typescript&logoColor=white"/>
   <img src="https://img.shields.io/badge/-React-blue?style=flat-square&logo=react&logoColor=white"/>
   <img src="https://img.shields.io/badge/-Nodejs-74ad63?style=flat-square&logo=Node.js&logoColor=white"/>
